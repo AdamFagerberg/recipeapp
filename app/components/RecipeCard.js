@@ -8,7 +8,6 @@ function RecipeCard({
   time: initialTime,
   ingredients: initialIngredients,
   instructions: initialInstructions,
-  onSave,
   onDelete,
 }) {
   const [clickCount, setClickCount] = useState(0);
@@ -30,7 +29,6 @@ function RecipeCard({
 
   const handleSave = () => {
     setIsEditing(false);
-    onSave({ title, time, ingredients, instructions, imgSrc });
   };
 
   const handleEdit = () => {
