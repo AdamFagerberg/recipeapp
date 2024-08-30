@@ -7,6 +7,7 @@ function RecipeCard({
   title,
   time,
   ingredients,
+  instructions,
   onEdit,
   onDelete,
   onUpdateRating,
@@ -30,6 +31,7 @@ function RecipeCard({
       <h2 className="recipeTitle">{title}</h2>
       <h3 className="cookingTime">{time}</h3>
       <p className="ingredients">{ingredients}</p>
+      <p className="instructions">{instructions}</p>
       <div className="betyg">
         <div className="div1">
           <button className="betygButton" onClick={handleThumbsUp}>
