@@ -38,7 +38,7 @@ function RecipeCard({
   return (
     <div className="card rounded-lg w-[360px] mb-10 flex-shrink-0 border shadow-lg overflow-hidden">
       <figure>
-        <Image src={imgSrc} alt={imgAlt} width={360} height={200} />
+        <img src={imgSrc} alt={imgAlt} width={360} height={200} />
       </figure>
       {isEditing ? (
         <>

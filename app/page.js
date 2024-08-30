@@ -45,6 +45,7 @@ export default function Home() {
           <div>
             {mockData.map((recipe) => (
               <RecipeCard
+                imgSrc={recipe.imageURL}
                 key={recipe.id}
                 title={recipe.title}
                 ingredients={recipe.ingredients}
