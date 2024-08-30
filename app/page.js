@@ -40,6 +40,7 @@ export default function Home() {
               key={recipe.id}
               title={recipe.title}
               ingredients={recipe.ingredients}
+              instructions={recipe.instructions}
             />
           ))}
         </div>
@@ -48,14 +49,33 @@ export default function Home() {
       )}
       {randomRecipe ? (
         <div>
-          {randomRecipe.map((recipe) => (
-            <RecipeCard
-              key={recipe.idMeal}
-              title={recipe.strMeal}
-              imgSrc={recipe.strMealThumb}
-              ingredients={recipe.strInstructions}
-            />
-          ))}
+          {randomRecipe.map((recipe) => {
+            const ingredients = [];
+
+            for (let i = 1; i <= 20; i++) {
+              const ingredient = recipe[`strIngredient${i}`];
+              const measure = recipe[`strMeasure${i}`];
+
+              if (
+                ingredient &&
+                ingredient.trim() !== "" &&
+                measure &&
+                measure.trim() !== ""
+              ) {
+                ingredients.push(`${measure} ${ingredient}`);
+              }
+            }
+
+            return (
+              <RecipeCard
+                key={recipe.idMeal}
+                title={recipe.strMeal}
+                imgSrc={recipe.strMealThumb}
+                ingredients={ingredients.join(", ")}
+                instructions={recipe.strInstructions}
+              />
+            );
+          })}
         </div>
       ) : (
         <div>Loading..</div>
