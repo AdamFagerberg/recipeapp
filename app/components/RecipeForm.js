@@ -85,7 +85,6 @@ function RecipeForm() {
             value={newRecipe.time}
             onChange={handleInputChange}
             placeholder="Cooking Time"
-            required
           />
           <textarea
             id="ingredients"
@@ -109,7 +108,6 @@ function RecipeForm() {
             name="image"
             accept="image/*"
             onChange={handleImageChange}
-            required
           />
           <button className="addBtn" type="submit">
             Add Recipe

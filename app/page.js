@@ -13,7 +13,7 @@ export default function Home() {
     async function fetchAPI() {
       try {
         const response = await fetch(
-          "http://www.themealdb.com/api/json/v1/1/random.php"
+          "https://thingproxy.freeboard.io/fetch/http://www.themealdb.com/api/json/v1/1/random.php"
         );
         const result = await response.json();
         setRandomRecipe(result.meals);
