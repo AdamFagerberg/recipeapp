@@ -22,7 +22,7 @@ function RecipeForm() {
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      setImage(reader.result); // Spara den uppladdade bilden som en data-URL
+      setImage(reader.result); // Save the uploaded image as a data-URL
       setNewRecipe({ ...newRecipe, imgSrc: reader.result });
     };
 
@@ -41,7 +41,7 @@ function RecipeForm() {
       instructions: "",
       imgSrc: "",
     });
-    setImage(null); // Återställ uppladdad bild
+    setImage(null); // Reset the uploaded image
   };
 
   const handleEditRecipe = (id) => {
@@ -62,55 +62,57 @@ function RecipeForm() {
   };
 
   return (
-    <div className="formcontainer">
-      <h3 className="new">New Recipe</h3>
-      <form onSubmit={handleAddRecipe} id="recipeForm">
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value={newRecipe.title}
-          onChange={handleInputChange}
-          placeholder="Recipe Title"
-          required
-        />
-        <input
-          type="text"
-          id="time"
-          name="time"
-          value={newRecipe.time}
-          onChange={handleInputChange}
-          placeholder="Cooking Time"
-          required
-        />
-        <textarea
-          id="ingredients"
-          name="ingredients"
-          value={newRecipe.ingredients}
-          onChange={handleInputChange}
-          placeholder="Ingredients"
-          required
-        />
-        <textarea
-          id="instructions"
-          name="instructions"
-          value={newRecipe.instructions}
-          onChange={handleInputChange}
-          placeholder="Instructions"
-          required
-        />
-        <input
-          type="file"
-          id="image"
-          name="image"
-          accept="image/*"
-          onChange={handleImageChange}
-          required
-        />
-        <button className="addBtn" type="submit">
-          Add Recipe
-        </button>
-      </form>
+    <div className="recipe-container">
+      <div className="form-container">
+        <h3 className="new">New Recipe</h3>
+        <form onSubmit={handleAddRecipe} id="recipeForm">
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={newRecipe.title}
+            onChange={handleInputChange}
+            placeholder="Recipe Title"
+            required
+          />
+          <input
+            type="text"
+            id="time"
+            name="time"
+            value={newRecipe.time}
+            onChange={handleInputChange}
+            placeholder="Cooking Time"
+            required
+          />
+          <textarea
+            id="ingredients"
+            name="ingredients"
+            value={newRecipe.ingredients}
+            onChange={handleInputChange}
+            placeholder="Ingredients"
+            required
+          />
+          <textarea
+            id="instructions"
+            name="instructions"
+            value={newRecipe.instructions}
+            onChange={handleInputChange}
+            placeholder="Instructions"
+            required
+          />
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            onChange={handleImageChange}
+            required
+          />
+          <button className="addBtn" type="submit">
+            Add Recipe
+          </button>
+        </form>
+      </div>
 
       <div id="recipesContainer">
         {recipes.map((recipe) =>
@@ -159,7 +161,7 @@ function RecipeForm() {
           ) : (
             <RecipeCard
               key={recipe.id}
-              imgSrc={recipe.imgSrc || "/img/Recept1.png"} // Använd den uppladdade bilden om den finns, annars en standardbild
+              imgSrc={recipe.imgSrc || "/img/Recept1.png"} // Use the uploaded image if available, otherwise use a default image
               imgAlt="image of dish"
               title={recipe.title}
               time={recipe.time}
