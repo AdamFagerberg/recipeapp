@@ -54,7 +54,11 @@ function RecipeForm() {
   };
 
   const handleSaveRecipe = (id, updatedRecipe) => {
-    setRecipes(recipes.map((r) => (r.id === id ? updatedRecipe : r)));
+    setRecipes(
+      recipes.map((r) =>
+        r.id === id ? { ...updatedRecipe, id, isEditing: false } : r
+      )
+    );
   };
 
   const handleDeleteRecipe = (id) => {
@@ -123,7 +127,6 @@ function RecipeForm() {
                   handleSaveRecipe(recipe.id, {
                     ...recipe,
                     title: e.target.value,
-                    isEditing: false,
                   })
                 }
               />
@@ -134,7 +137,6 @@ function RecipeForm() {
                   handleSaveRecipe(recipe.id, {
                     ...recipe,
                     time: e.target.value,
-                    isEditing: false,
                   })
                 }
               />
@@ -144,14 +146,20 @@ function RecipeForm() {
                   handleSaveRecipe(recipe.id, {
                     ...recipe,
                     ingredients: e.target.value,
-                    isEditing: false,
+                  })
+                }
+              />
+              <textarea
+                value={recipe.instructions}
+                onChange={(e) =>
+                  handleSaveRecipe(recipe.id, {
+                    ...recipe,
+                    instructions: e.target.value,
                   })
                 }
               />
               <button
-                onClick={() =>
-                  handleSaveRecipe(recipe.id, { ...recipe, isEditing: false })
-                }
+                onClick={() => handleSaveRecipe(recipe.id, { ...recipe })}
               >
                 Save
               </button>
@@ -167,6 +175,9 @@ function RecipeForm() {
               instructions={recipe.instructions}
               onEdit={() => handleEditRecipe(recipe.id)}
               onDelete={() => handleDeleteRecipe(recipe.id)}
+              onSave={(updatedRecipe) =>
+                handleSaveRecipe(recipe.id, updatedRecipe)
+              }
             />
           )
         )}

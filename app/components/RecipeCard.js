@@ -9,11 +9,20 @@ function RecipeCard({
   ingredients,
   instructions,
   onEdit,
+  title: initialTitle,
+  time: initialTime,
+  ingredients: initialIngredients,
+  instructions: initialInstructions,
+  onSave,
   onDelete,
-  onUpdateRating,
 }) {
   const [clickCount, setClickCount] = useState(0);
   const [filledStar, setFilledStar] = useState(0);
+  const [isEditing, setIsEditing] = useState(false);
+  const [title, setTitle] = useState(initialTitle);
+  const [time, setTime] = useState(initialTime);
+  const [ingredients, setIngredients] = useState(initialIngredients);
+  const [instructions, setInstructions] = useState(initialInstructions);
 
   const handleThumbsUp = () => {
     const newClickCount = clickCount + 1;
@@ -22,6 +31,45 @@ function RecipeCard({
       setFilledStar(filledStar + 1);
     }
   };
+
+  const handleSave = () => {
+    setIsEditing(false);
+    onSave({ title, time, ingredients, instructions });
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  if (isEditing) {
+    return (
+      <div className="card rounded-lg w-[360px] mb-10 flex-shrink-0 border shadow-lg overflow-hidden">
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="editRecipeTitle"
+        />
+        <input
+          type="text"
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+          className="editCookingTime"
+        />
+        <textarea
+          value={ingredients}
+          onChange={(e) => setIngredients(e.target.value)}
+          className="editIngredients"
+        />
+        <textarea
+          value={instructions}
+          onChange={(e) => setInstructions(e.target.value)}
+          className="editInstructions"
+        />
+        <button onClick={handleSave}>Save</button>
+      </div>
+    );
+  }
 
   return (
     <div className="card rounded-lg w-[360px] mb-10 flex-shrink-0 border shadow-lg overflow-hidden">
@@ -58,7 +106,7 @@ function RecipeCard({
           ))}
         </div>
       </div>
-      <button id="editBtn" onClick={onEdit}>
+      <button id="editBtn" onClick={handleEdit}>
         Edit
       </button>
       <button id="deleteBtn" onClick={onDelete}>
