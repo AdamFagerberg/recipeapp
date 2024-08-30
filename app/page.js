@@ -28,6 +28,10 @@ export default function Home() {
     setMockData(Recipes.recipes);
   }, []);
 
+  function handleDelete(e) {
+    console.log(e);
+  }
+
   console.log(mockData);
 
   return (
@@ -40,6 +44,7 @@ export default function Home() {
               key={recipe.id}
               title={recipe.title}
               ingredients={recipe.ingredients}
+              onDelete={(e) => handleDelete(e)}
             />
           ))}
         </div>
