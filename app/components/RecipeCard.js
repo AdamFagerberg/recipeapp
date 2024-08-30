@@ -4,10 +4,6 @@ import Image from "next/image";
 function RecipeCard({
   imgSrc,
   imgAlt,
-  title,
-  time,
-  ingredients,
-  instructions,
   onEdit,
   title: initialTitle,
   time: initialTime,
