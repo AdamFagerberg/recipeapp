@@ -7,17 +7,41 @@ function RecipeForm() {
     title: "",
     time: "",
     ingredients: "",
+    instructions: "",
+    imgSrc: "",
   });
+  const [image, setImage] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewRecipe({ ...newRecipe, [name]: value });
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setImage(reader.result); // Spara den uppladdade bilden som en data-URL
+      setNewRecipe({ ...newRecipe, imgSrc: reader.result });
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleAddRecipe = (e) => {
     e.preventDefault();
     setRecipes([...recipes, { ...newRecipe, id: Date.now() }]);
-    setNewRecipe({ title: "", time: "", ingredients: "" });
+    setNewRecipe({
+      title: "",
+      time: "",
+      ingredients: "",
+      instructions: "",
+      imgSrc: "",
+    });
+    setImage(null); // Återställ uppladdad bild
   };
 
   const handleEditRecipe = (id) => {
@@ -72,7 +96,15 @@ function RecipeForm() {
           name="instructions"
           value={newRecipe.instructions}
           onChange={handleInputChange}
-          placeholder="instructions"
+          placeholder="Instructions"
+          required
+        />
+        <input
+          type="file"
+          id="image"
+          name="image"
+          accept="image/*"
+          onChange={handleImageChange}
           required
         />
         <button className="addBtn" type="submit">
@@ -127,11 +159,12 @@ function RecipeForm() {
           ) : (
             <RecipeCard
               key={recipe.id}
-              imgSrc="/img/Recept1.png"
+              imgSrc={recipe.imgSrc || "/img/Recept1.png"} // Använd den uppladdade bilden om den finns, annars en standardbild
               imgAlt="image of dish"
               title={recipe.title}
               time={recipe.time}
               ingredients={recipe.ingredients}
+              instructions={recipe.instructions}
               onEdit={() => handleEditRecipe(recipe.id)}
               onDelete={() => handleDeleteRecipe(recipe.id)}
             />
