@@ -39,6 +39,7 @@ function RecipeForm() {
 
   return (
     <div className="formcontainer">
+      <button className="new">New Recipe</button>
       <form onSubmit={handleAddRecipe} id="recipeForm">
         <input
           type="text"
@@ -66,7 +67,17 @@ function RecipeForm() {
           placeholder="Ingredients"
           required
         />
-        <button type="submit">Add Recipe</button>
+        <textarea
+          id="instructions"
+          name="instructions"
+          value={newRecipe.instructions}
+          onChange={handleInputChange}
+          placeholder="instructions"
+          required
+        />
+        <button className="addBtn" type="submit">
+          Add Recipe
+        </button>
       </form>
 
       <div id="recipesContainer">

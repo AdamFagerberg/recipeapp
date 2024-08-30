@@ -76,6 +76,16 @@ main {
   height: auto;
 }
 
+.new {
+  background: #f5f5f5;
+  padding: 10px;
+  display: flex;
+  width: 100px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 main article {
   height: 33rem;
   width: 100%;
@@ -165,7 +175,7 @@ footer > section article a {
   margin: 1rem;
 }
 
-#addBtn {
+.addBtn {
   background-color: #509e2f;
   padding: 10px 30px 10px 30px;
   color: white;
@@ -173,6 +183,10 @@ footer > section article a {
   border: none;
 }
 
+#instructions {
+  width: 300px;
+  height: auto;
+}
 input {
   padding: 8px;
 }
@@ -229,8 +243,8 @@ input {
 
 /* gabriel css */
 #ingredients {
-  width: 210px;
-  height: 300px;
+  width: 300px;
+  height: 200px;
   resize: none;
 }
 
