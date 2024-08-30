@@ -1,8 +1,5 @@
 "use client"
-
-import RecipeForm from "./components/RecipeForm";
-
-"use client";
+import RecipeForm from "./components/RecipeForm"
 import { useEffect, useState } from "react";
 import Recipes from "./mockdata/recipes.json";
 
