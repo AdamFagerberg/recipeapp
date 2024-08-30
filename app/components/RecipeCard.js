@@ -4,15 +4,21 @@ import Image from "next/image";
 function RecipeCard({
   imgSrc,
   imgAlt,
-  title,
-  time,
-  ingredients,
   onEdit,
+  title: initialTitle,
+  time: initialTime,
+  ingredients: initialIngredients,
+  instructions: initialInstructions,
+  onSave,
   onDelete,
-  onUpdateRating,
 }) {
   const [clickCount, setClickCount] = useState(0);
   const [filledStar, setFilledStar] = useState(0);
+  const [isEditing, setIsEditing] = useState(false);
+  const [title, setTitle] = useState(initialTitle);
+  const [time, setTime] = useState(initialTime);
+  const [ingredients, setIngredients] = useState(initialIngredients);
+  const [instructions, setInstructions] = useState(initialInstructions);
 
   const handleThumbsUp = () => {
     const newClickCount = clickCount + 1;
@@ -22,6 +28,45 @@ function RecipeCard({
     }
   };
 
+  const handleSave = () => {
+    setIsEditing(false);
+    onSave({ title, time, ingredients, instructions });
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  if (isEditing) {
+    return (
+      <div className="card rounded-lg w-[360px] mb-10 flex-shrink-0 border shadow-lg overflow-hidden">
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="editRecipeTitle"
+        />
+        <input
+          type="text"
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+          className="editCookingTime"
+        />
+        <textarea
+          value={ingredients}
+          onChange={(e) => setIngredients(e.target.value)}
+          className="editIngredients"
+        />
+        <textarea
+          value={instructions}
+          onChange={(e) => setInstructions(e.target.value)}
+          className="editInstructions"
+        />
+        <button onClick={handleSave}>Save</button>
+      </div>
+    );
+  }
+
   return (
     <div className="card rounded-lg w-[360px] mb-10 flex-shrink-0 border shadow-lg overflow-hidden">
       <figure>
@@ -30,6 +75,7 @@ function RecipeCard({
       <h2 className="recipeTitle">{title}</h2>
       <h3 className="cookingTime">{time}</h3>
       <p className="ingredients">{ingredients}</p>
+      <p className="instructions">{instructions}</p>
       <div className="betyg">
         <div className="div1">
           <button className="betygButton" onClick={handleThumbsUp}>
@@ -56,7 +102,7 @@ function RecipeCard({
           ))}
         </div>
       </div>
-      <button id="editBtn" onClick={onEdit}>
+      <button id="editBtn" onClick={handleEdit}>
         Edit
       </button>
       <button id="deleteBtn" onClick={onDelete}>

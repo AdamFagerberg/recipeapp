@@ -28,6 +28,10 @@ export default function Home() {
     setMockData(Recipes.recipes);
   }, []);
 
+  function handleDelete(e) {
+    console.log(e);
+  }
+
   console.log(mockData);
 
   return (
