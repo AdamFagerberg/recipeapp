@@ -38,7 +38,7 @@ function RecipeForm() {
   };
 
   return (
-    <div>
+    <div className="formcontainer">
       <form onSubmit={handleAddRecipe} id="recipeForm">
         <input
           type="text"
