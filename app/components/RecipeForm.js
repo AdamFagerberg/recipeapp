@@ -64,7 +64,6 @@ function RecipeForm() {
   const handleDeleteRecipe = (id) => {
     setRecipes(recipes.filter((r) => r.id !== id));
   };
-
   return (
     <div className="recipe-container">
       <div className="form-container">

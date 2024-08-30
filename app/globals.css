@@ -6,7 +6,43 @@ body {
   height: 100vh;
 }
 
-/* Hela huvudområdet */
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #509e2f;
+  color: white;
+}
+
+.logo {
+  height: 70px;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+.menu li {
+  display: inline;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+/* Main content container */
 .main-container {
   display: flex;
   flex: 1;
@@ -47,7 +83,7 @@ textarea {
   box-sizing: border-box;
 }
 
-/* Knappar */
+/* Buttons */
 button {
   padding: 10px;
   color: white;
@@ -111,7 +147,7 @@ button:hover {
   opacity: 0.8;
 }
 
-/* Stil för betyg */
+/* Betyg */
 .betyg {
   display: flex;
   justify-content: space-between;
