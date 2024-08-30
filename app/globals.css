@@ -1,315 +1,141 @@
-@tailwind components;
-@tailwind utilities;
+body {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 
+/* Hela huvudområdet */
+.main-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+/* RecipeForm */
 .formcontainer {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 300px;
-}
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: "Open Sans", sans-serif;
-}
-
-header {
-  max-width: var(--width);
-  width: 100%;
+  width: 30%;
+  background: #ffffff;
   padding: 1rem;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-header > img {
-  max-width: 8rem;
-  width: 100%;
-}
-
-header nav {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-}
-
-header nav a,
-footer a {
-  color: rgba(0, 0, 0, 0.8);
-  text-decoration: none;
-  margin: 0 0.5rem;
-}
-
-header nav a.active {
-  font-weight: bold;
-  color: rgba(0, 0, 0, 1);
-}
-
-footer section article {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-}
-
-header nav img {
-  margin-left: 1rem;
-}
-
-main {
-  max-width: var(--width);
-  margin: 0 auto;
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-}
-
-#recipesContainer {
-  width: 1000px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  height: auto;
-}
-
-.new {
+/* MockData */
+.mockData {
+  width: 400px;
   background: #f5f5f5;
-  padding: 10px;
-  display: flex;
-  width: 100px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-main article {
-  height: 33rem;
+input,
+textarea {
+  padding: 8px;
+  margin-bottom: 10px;
   width: 100%;
-  margin: 1rem;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 0 3rem rgba(0, 0, 0, 0.2);
-}
-
-main article figure {
-  margin: 0;
-  padding: 0;
-  background: rgb(244, 182, 10);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-main article figure img {
-  width: 100%;
-  height: 100%;
-}
-
-h2.recipeTitle {
-  margin: 0;
-  padding: 0.5rem 1rem 0rem 1rem;
-}
-h3.cookingTime {
-  margin: 0;
-  padding: 0rem 1rem 1rem 1rem;
-  font-weight: 500;
-  font-size: 14px;
-  opacity: 0.6;
-}
-
-main article p.ingredients {
-  margin: 0;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  line-height: 140%;
-}
-
-main article button {
-  appearance: none;
-  border: none;
-  background: #509e2f;
-  color: white;
-  margin: auto auto 2rem auto;
-  padding: 0.5rem;
-  width: 3rem;
-  border-radius: 0.25rem;
-}
-
-footer {
-  background: rgba(0, 0, 0, 0.03);
-  height: 16rem;
-  display: flex;
-  justify-content: center;
-}
-
-footer > section {
-  max-width: var(--width);
-  width: 100%;
-  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   box-sizing: border-box;
 }
 
-footer > section article {
-  flex: 1;
-  margin: 0 2rem;
-}
-
-footer > section article a {
-  margin: 0.25rem 0;
-}
-
-.recipeCard {
-  width: 100%;
-  max-width: 300px;
-  height: auto; /* Helena - detta gör höjden flexibel */
-  display: flex;
-  flex-direction: column;
-  background: white;
-  box-shadow: 0 0 3rem rgba(0, 0, 0, 0.2);
-  margin: 1rem;
-}
-
-.addBtn {
-  background-color: #509e2f;
-  padding: 10px 30px 10px 30px;
+/* Knappar */
+button {
+  padding: 10px;
   color: white;
-  font-size: 14px;
+  background-color: #509e2f;
   border: none;
-}
-
-#instructions {
-  width: 300px;
-  height: 300px;
-}
-input {
-  padding: 8px;
-}
-
-#addBtn:hover {
-  opacity: 80%;
+  border-radius: 4px;
   cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
 }
 
-/*Helena*/
-.recipeCard button:hover {
+button:hover {
   opacity: 0.8;
 }
 
-.recipeCard betygButton {
-  margin-left: 10px;
+/* RecipeCard */
+.card {
   display: flex;
-  justify-content: baseline;
-  flex-direction: row;
-  align-items: center;
-  padding: 5px;
-  cursor: pointer;
+  flex-direction: column;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 700px;
 }
 
-.buttonDiv {
-  display: flex;
+.card img {
+  width: 100%;
+  height: auto;
 }
-#editBtn,
-#deleteBtn {
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  padding: 7px;
-  background-color: #509e2f;
+
+.card h2 {
+  margin: 0.5rem;
+  padding: 0;
+}
+
+.card h3 {
+  margin: 0 0.5rem;
+  padding: 0;
+  font-weight: 500;
+  color: #666;
+}
+
+.card p {
+  margin: 0.5rem;
+  padding: 0;
+}
+
+.card button {
+  padding: 10px;
   color: white;
+  background-color: #509e2f;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: 0.25rem;
-  width: 60px;
+  margin: 5px;
 }
 
-/* .greenBtn {
-  background-color: rgb(239, 239, 239);
-  padding: 8px;
-  font-size: 12px;
-  border: 1px solid gray;
+.card button:hover {
+  opacity: 0.8;
 }
 
-#errorSpan {
-  display: flex;
-  color: red;
-  margin-bottom: 10px;
-  font-size: 14px; */
-/* } */
-
-/* gabriel css */
-#ingredients {
-  width: 300px;
-  height: 200px;
-  resize: none;
-}
-
-/*Helenas css*/
+/* Stil för betyg */
 .betyg {
-  max-width: 100%;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
+  padding: 0.5rem;
   align-items: center;
 }
 
-.starcontainer {
+.betyg .div1 {
   display: flex;
   align-items: center;
 }
 
-#imgBetyg {
-  width: 14px;
-  height: 14px;
-  flex-direction: row-reverse;
-}
-.div1 {
+.betyg .div2 {
   display: flex;
-  max-width: 100%;
-  margin-left: 8px;
-}
-.div2 {
-  display: flex;
-  justify-content: end;
-  margin-right: 8px;
+  align-items: center;
 }
 
-.div3 {
-  display: none;
-  justify-content: end;
-  margin-right: 8px;
+.betyg img {
+  width: 24px;
+  height: 24px;
 }
 
-.imgstars {
-  width: 14px;
-  height: 14px;
-}
 #counter {
+  margin-left: 10px;
   font-size: 18px;
   color: #333;
-  margin-top: 5px;
-  margin-left: 10px;
-}
-.betygButton {
-  appearance: none;
-  border: none;
-  background: none;
-  width: 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin: 0;
-}
-
-.imgstarempty {
-  height: 20px;
-  width: auto;
-}
-.imgstarblack {
-  height: 20px;
-  width: auto;
 }
