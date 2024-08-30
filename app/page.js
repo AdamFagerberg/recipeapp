@@ -28,7 +28,14 @@ export default function Home() {
     setMockData(Recipes.recipes);
   }, []);
 
-  console.log(mockData);
+  function handleDeleteMock(id) {
+    setMockData(mockData.filter((recipe) => recipe.id !== id));
+    console.log(id);
+  }
+
+  function handleDeleteRandom(id) {
+    setRandomRecipe(randomRecipe.filter((recipe) => recipe.idMeal !== id));
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -41,6 +48,7 @@ export default function Home() {
                 key={recipe.id}
                 title={recipe.title}
                 ingredients={recipe.ingredients}
+                onDelete={() => handleDeleteMock(recipe.id)}
               />
             ))}
           </div>
@@ -55,6 +63,7 @@ export default function Home() {
                 title={recipe.strMeal}
                 imgSrc={recipe.strMealThumb}
                 ingredients={recipe.strInstructions}
+                onDelete={() => handleDeleteRandom(recipe.idMeal)}
               />
             ))}
           </div>
