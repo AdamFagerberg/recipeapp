@@ -32,34 +32,36 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <RecipeForm />
-      {mockData ? (
-        <div>
-          {mockData.map((recipe) => (
-            <RecipeCard
-              key={recipe.id}
-              title={recipe.title}
-              ingredients={recipe.ingredients}
-            />
-          ))}
-        </div>
-      ) : (
-        <div>Loading..</div>
-      )}
-      {randomRecipe ? (
-        <div>
-          {randomRecipe.map((recipe) => (
-            <RecipeCard
-              key={recipe.idMeal}
-              title={recipe.strMeal}
-              imgSrc={recipe.strMealThumb}
-              ingredients={recipe.strInstructions}
-            />
-          ))}
-        </div>
-      ) : (
-        <div>Loading..</div>
-      )}
+      <div className="main-container">
+        <RecipeForm />
+        {mockData ? (
+          <div>
+            {mockData.map((recipe) => (
+              <RecipeCard
+                key={recipe.id}
+                title={recipe.title}
+                ingredients={recipe.ingredients}
+              />
+            ))}
+          </div>
+        ) : (
+          <div>Loading..</div>
+        )}
+        {randomRecipe ? (
+          <div>
+            {randomRecipe.map((recipe) => (
+              <RecipeCard
+                key={recipe.idMeal}
+                title={recipe.strMeal}
+                imgSrc={recipe.strMealThumb}
+                ingredients={recipe.strInstructions}
+              />
+            ))}
+          </div>
+        ) : (
+          <div>Loading..</div>
+        )}
+      </div>
     </main>
   );
 }
