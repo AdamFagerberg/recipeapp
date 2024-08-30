@@ -36,7 +36,7 @@ function RecipeCard({
           <button className="betygButton" onClick={handleThumbsUp}>
             <Image
               id="imgBetyg"
-              src="/img/8530677_thumbs_up_icon.png"
+              src="/8530677_thumbs_up_icon.png"
               alt="betyg"
               width={24}
               height={24}
@@ -49,7 +49,7 @@ function RecipeCard({
             <Image
               key={i}
               className="imgstarempty"
-              src={i < filledStar ? "/img/starblack.png" : "/img/starempty.png"}
+              src={i < filledStar ? "/starblack.png" : "/starempty.png"}
               alt="betyg"
               width={24}
               height={24}
