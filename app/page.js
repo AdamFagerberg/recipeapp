@@ -17,6 +17,7 @@ export default function Home() {
         );
         const result = await response.json();
         setRandomRecipe(result.meals);
+        console.log(result);
       } catch (error) {
         console.log("Error: ", error);
       }
