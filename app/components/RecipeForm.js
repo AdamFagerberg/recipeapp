@@ -1,49 +1,55 @@
 import { useState } from "react";
 import RecipeCard from "./RecipeCard";
 
+//<---------Åsa--------->//
+
 function RecipeForm() {
-  const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState([]); //recipes innehåller alla recept och uppdaterar state med nya
   const [newRecipe, setNewRecipe] = useState({
+    //state för nytt recept
     title: "",
     time: "",
     ingredients: "",
     instructions: "",
     imgSrc: "",
   });
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(null); //state för bild
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewRecipe({ ...newRecipe, [name]: value });
+    //funktion för input change
+    const { name, value } = e.target; //hämtar vilka inputfält som ändrats och det nya värdet
+    setNewRecipe({ ...newRecipe, [name]: value }); //skapar kopia med nya datan
   };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
+    const file = e.target.files[0]; //hämtar filen från bilduppladdning
+    const reader = new FileReader(); //filereader läser filen
 
     reader.onloadend = () => {
       setImage(reader.result); // Save the uploaded image as a data-URL
-      setNewRecipe({ ...newRecipe, imgSrc: reader.result });
+      setNewRecipe({ ...newRecipe, imgSrc: reader.result }); //Uppdaterar newRecipe med bilden
     };
-
     if (file) {
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); //om en fil valts, läs som data-URL
     }
   };
 
+  //funktion för att lägga till recept
   const handleAddRecipe = (e) => {
     e.preventDefault();
-    setRecipes([...recipes, { ...newRecipe, id: Date.now() }]);
+    setRecipes([...recipes, { ...newRecipe, id: Date.now() }]); //lägger till det nya receptet i recipes
     setNewRecipe({
+      //återställ formulär
       title: "",
       time: "",
       ingredients: "",
       instructions: "",
       imgSrc: "",
     });
-    setImage(null); // Reset the uploaded image
+    setImage(null); // Återställ bild
   };
 
+  //<---------Helena--------->//
   const handleEditRecipe = (id) => {
     const recipe = recipes.find((r) => r.id === id);
     const updatedRecipe = {
@@ -64,6 +70,8 @@ function RecipeForm() {
   const handleDeleteRecipe = (id) => {
     setRecipes(recipes.filter((r) => r.id !== id));
   };
+
+  //<---------Åsa--------->//
   return (
     <div className="recipe-container">
       <div className="form-container">
@@ -115,6 +123,7 @@ function RecipeForm() {
         </form>
       </div>
 
+      {/* <--------- Helena ---------> */}
       <div id="recipesContainer">
         {recipes.map((recipe) =>
           recipe.isEditing ? (
@@ -166,7 +175,7 @@ function RecipeForm() {
           ) : (
             <RecipeCard
               key={recipe.id}
-              imgSrc={recipe.imgSrc || "/img/Recept1.png"} // Use the uploaded image if available, otherwise use a default image
+              imgSrc={recipe.imgSrc || "/ulf_chef.jpeg"} // Uppladdad bild om tillgänglig, annars placeholder
               imgAlt="image of dish"
               title={recipe.title}
               time={recipe.time}
