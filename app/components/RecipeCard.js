@@ -15,7 +15,9 @@ function RecipeCard({
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(initialTitle);
   const [time, setTime] = useState(initialTime);
-  const [ingredients, setIngredients] = useState(initialIngredients);
+  const [ingredients, setIngredients] = useState(
+    Array.isArray(initialIngredients) ? initialIngredients : []
+  );
   const [instructions, setInstructions] = useState(initialInstructions);
   const [imgSrc, setImgSrc] = useState(initialImgSrc);
 
@@ -55,8 +57,8 @@ function RecipeCard({
             className="cookingTime inputStyle"
           />
           <textarea
-            value={ingredients}
-            onChange={(e) => setIngredients(e.target.value)}
+            value={ingredients.join("\n")}
+            onChange={(e) => setIngredients(e.target.value.split("\n"))}
             className="ingredients inputStyle"
           />
           <textarea
@@ -73,8 +75,8 @@ function RecipeCard({
           <h2 className="recipeTitle">{title}</h2>
           <h3 className="cookingTime">{time}</h3>
           <ul>
-            {ingredients.map((ingredient) => (
-              <li>{ingredient}</li>
+            {ingredients.map((ingredient, index) => (
+              <li key={index}>{ingredient}</li>
             ))}
           </ul>
 
