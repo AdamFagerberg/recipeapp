@@ -72,15 +72,11 @@ function RecipeCard({
         <>
           <h2 className="recipeTitle">{title}</h2>
           <h3 className="cookingTime">{time}</h3>
-          {Array.isArray(ingredients) ? (
-            <ul>
-              {ingredients.map((ingredient) => (
-                <li>{ingredient}</li>
-              ))}
-            </ul>
-          ) : (
-            <p className="ingredients">{ingredients}</p>
-          )}
+          <ul>
+            {ingredients.map((ingredient) => (
+              <li>{ingredient}</li>
+            ))}
+          </ul>
 
           <p className="instructions">{instructions}</p>
           <div className="betyg">

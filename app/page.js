@@ -81,7 +81,7 @@ export default function Home() {
                   key={recipe.idMeal}
                   title={recipe.strMeal}
                   imgSrc={recipe.strMealThumb}
-                  ingredients={ingredients.join(", ")}
+                  ingredients={ingredients}
                   instructions={recipe.strInstructions}
                   onDelete={() => handleDeleteRandom(recipe.idMeal)}
                 />
